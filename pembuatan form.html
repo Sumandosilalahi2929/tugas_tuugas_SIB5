@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembuatan Form</title>
+</head>
+<body>
+    <h2>Formulir</h2>
+    <form>
+        <label>Masukkan Nama Anda:</label>
+        <input type="text" name="nama" value="" placeholder="isi nama anda di sini" size="40" maxlength="40">
+        <br><br>
+        <label>Password Anda:</label>
+        <input type="password" name="sandi" value="" placeholder="isi password anda disini">
+        <br><br>
+        <label>Email Anda:</label>
+        <input type="email" name="emailku" value="" placeholder="nama_anda@gmail.com">
+        <br><br>
+        <label>Masukkan Warna Anda:</label>
+        <input type="color" name="Warnaku">
+        <br><br>
+        <label>Masukkan tanggal lahir:</label>
+        <input type="date" name="tgllahir">
+        <br><br>
+        <label>Stock Barang:</label>
+        <input type="number" name="nilai" min="0" max="100">
+        <br><br>
+        <label>Upload File:</label>
+        <input type="file" name="upload">
+        <br><br>
+        <label>Pilih Menu:</label><br>
+        <input type="checkbox" name="menu" value="menu1">Menu Pertama <br>
+        <input type="checkbox" name="menu" value="menu2">Menu Kedua<br>
+        <input type="checkbox" name="menu" value="menu3">Menu Ketiga<br>
+        <br><br>
+        <label>Jenis Kelamin:</label><br>
+        <input type="radio" name="jk" value="L">Laki-Laki<br>
+        <input type="radio" name="jk" value="P">Perempuan<br>
+        <br><br>
+        <label>Pilihan:</label>
+        <select name="Pilih">
+            <option value="0">Status Kelulusan</option>
+            <option value="1">Pilihan 1</option>
+            <option value="2">Pilihan 2</option>
+            <option value="3">Pilihan 3</option>
+            <option value="4">Pilihan 4</option>
+        </select>
+        <br><br>
+        <label>Kolom Komentar:</label>
+        <textarea name="Komentar" rows="10" cols="20"></textarea>
+        <br><br>
+        <input type="submit" name="proses" value="simpan">
+        <input type="reset" name="unproses" value="batal">
+
+    </form>
+</body>
+</html>

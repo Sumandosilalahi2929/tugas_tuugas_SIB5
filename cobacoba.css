@@ -1,0 +1,9 @@
+.container {
+    width: 200px; /* Lebar elemen container */
+    height: 100px; /* Tinggi elemen container */
+}
+li:nth-child(odd) {
+    background-color: rgb(244, 7, 7);
+    color: rebeccapurple;
+    
+}
