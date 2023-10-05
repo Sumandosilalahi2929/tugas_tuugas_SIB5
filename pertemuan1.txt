@@ -1,2 +1,51 @@
+//Kumpulan query MySql
 //melihat seluruh database
 SHOW DATABASE;
+
+//membuat database baru
+CREATE DATABASE pegawaisib5;
+
+//MENGGUNAKAN DATABASE
+use pegawaisib5;
+
+//membuat table 
+CREATE TABLE jenis(
+    id int PRIMARY KEY AUTO_INCREMENT,
+    nama varchar(30) NOT NULL UNIQUE
+    );
+
+/*
+id adalah nama kolom atau header kolom
+int adalah type database
+PRIMARY KEY adalah key untuk aoutmatisasi penomoran
+NOT NULL menandakan kolom tersebut tidak boleh kosong jika data mula diisi
+UNIQUE adalah key untuk kolom agar tidak boleh sama */
+
+
+//membuat tabel relasi
+CREATE TABLE produk (
+    id int PRIMARY KEY AUTO_INCREMENT,
+    nama varchar(30) NOT NULL UNIQUE,
+    harga double NOT NULL,
+    stok int NOT NULL,
+    idjenis int NOT NULL REFERENCES jenis(id),
+    foto varchar(30));
+
+    REFERENCES -> merujuk
+
+//menambah column baru
+    ALTER TABLE jenis ADD COLUMN if NOT EXISTS keterangan varchar(50) AFTER nama;
+
+//megubah nama di table 
+    ALTER TABLE jenis CHANGE keterangan ket varchar(50);
+
+
+//mengubah tipe data
+ALTER TABLE jenis MODIFY ket TEXT AFTER nama;
+
+/Menghapus column
+ALTER TABLE jenis DROP COLUMN ket;
+
+//mengubah nama tabel
+
+ALTER TABLE jenis RENAME TO jenis_produk;
