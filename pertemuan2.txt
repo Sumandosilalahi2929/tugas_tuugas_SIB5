@@ -1,0 +1,46 @@
+DML
+
+//INSERT
+INSERT INTO jenis_produk VALUES
+('','Elektronik'),('','Furnitur'),('','Makanan'),('','Minuman');
+
+
+//insert dengan memanggil nama kolom
+INSERT INTO produk (nama, harga, stok, idjenis, foto) VALUES
+('TV', 200000, 3, 1, 'Tv.jpg');
+
+
+//UPDATE data
+UPDATE produk SET nama = 'TV LCD' harga = 400000 WHERE id = 1;
+
+
+Menghapus produk
+DELETE FROM produk WHERE id = 2;
+
+//menselect beberapa
+SELECT nama, harga, stok FROM produk;
+
+//klausa
+SELECT nama, harga, stok FROM produk WHERE stok < 40;
+
+
+//menambah data dikolom
+INSERT INTO produk (nama, harga, stok, idjenis, foto) VALUES
+('Nasi Goreng',200000,10,3,'nasi.jpg'),
+('Coca-Cola',300000,20,4,'cola.jpg'),
+('Kursi',400000,20,2,'kursi.jpg'),
+('Handphone',200000,10,1,'hp.jpg'),
+('Sprite',4000,4,4,'sprite.jpg');
+
+
+
+//memakai WHERE
+SELECT * FROM produk WHERE stok <=10;
+
+
+//memakai order by
+SELECT * FROM produk ORDER BY harga DESC;
+
+//memakai asc
+ASC digunakan untuk mengurutkan data dalam urutan menaik atau dari nilai terkecil ke terbesar.
+SELECT * FROM produk ORDER BY harga ASC;
