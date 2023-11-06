@@ -55,6 +55,8 @@ aria-hidden="true">
 <!-- Page level custom scripts -->
 <script src="{{asset('admin/js/demo/chart-area-demo.js')}}"></script>
 <script src="{{asset('admin/js/demo/chart-pie-demo.js')}}"></script>
+<script src="{{ asset('admin/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('admin/js/demo/datatables-demo.js') }}"></script>
 
 </body>
 
