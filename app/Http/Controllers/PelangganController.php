@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Pelanggan;
+use App\Models\Kartu;
 use Illuminate\Http\Request;
 
 class PelangganController extends Controller
@@ -12,6 +13,8 @@ class PelangganController extends Controller
     public function index()
     {
         //
+        $pelanggan = Pelanggan::all();
+        return view('admin.pelanggan.index',['pelanggan' => $pelanggan]);
     }
 
     /**
@@ -20,6 +23,9 @@ class PelangganController extends Controller
     public function create()
     {
         //
+        $kartu = Kartu::all();
+        $gender = ['L','P'];
+        return view ('admin.pelanggan.create',compact('kartu','gender'));
     }
 
     /**
@@ -28,6 +34,16 @@ class PelangganController extends Controller
     public function store(Request $request)
     {
         //
+        $pelanggan = new Pelanggan;
+        $pelanggan->kode = $request->kode;
+        $pelanggan->nama = $request->nama;
+        $pelanggan->jk = $request->jk;
+        $pelanggan->tmp_lahir = $request->tmp_lahir;
+        $pelanggan->tgl_lahir = $request->tgl_lahir;
+        $pelanggan->email = $request->email;
+        $pelanggan->kartu_id = $request->kartu_id;
+        $pelanggan->save();
+        return redirect('admin/pelanggan');
     }
 
     /**
@@ -36,6 +52,8 @@ class PelangganController extends Controller
     public function show(string $id)
     {
         //
+        $pelanggan = Pelanggan::find($id);
+        return view ('admin.pelanggan.show', compact('pelanggan'));
     }
 
     /**
@@ -44,6 +62,11 @@ class PelangganController extends Controller
     public function edit(string $id)
     {
         //
+        $pelanggan = Pelanggan::find($id);
+        $kartu = Kartu::all();
+        $gender = ['L','P'];
+        return view ('admin.pelanggan.edit', compact('pelanggan','kartu','gender'));
+
     }
 
     /**
@@ -52,6 +75,7 @@ class PelangganController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        
     }
 
     /**
@@ -60,5 +84,8 @@ class PelangganController extends Controller
     public function destroy(string $id)
     {
         //
+        $pelanggan = Pelanggan::find($id);
+        $pelanggan->delete();
+        return redirect('admin/pelanggan');
     }
 }

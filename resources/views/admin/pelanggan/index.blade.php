@@ -8,9 +8,9 @@
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3 ">
-                           <a href="{{ url('admin/jenis_produk/create') }}" class="btn btn-primary btn-sm">
-                            <i class="fa fa-cart-plus"> Tambah</i></a>
+                        <div class="card-header py-3">
+                            <a href="{{ url('admin/pelanggan/create') }}" class="btn btn-primary btn-sm">
+                                <i class="fa fa-cart-plus"> Tambah</i></a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -19,29 +19,41 @@
                                         
                                         <tr>
                                             <th>No</th>
+                                            <th>Kode</th>
                                             <th>Nama</th>
-                                            <th>action</th>
-                                            
+                                            <th>Jenis Kelamin</th>
+                                            <th>Tempat Lahir</th>
+                                            <th>Tanggal Lahir</th>
+                                            <th>Email</th>
+                                            <th>Kartu</th>
+                                    
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                        <th>No</th>
+                                            <th>No</th>
+                                            <th>Kode</th>
                                             <th>Nama</th>
-                                            <th>action</th>
+                                            <th>Jenis Kelamin</th>
+                                            <th>Tempat Lahir</th>
+                                            <th>Tanggal Lahir</th>
+                                            <th>Email</th>
+                                            <th>Kartu</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                     @php $no=1 @endphp
-                                    @foreach ($jenis_produk as $jenis)
+                                    @foreach ($pelanggan as $p)
                                     
                                         <tr>
-                                            <td>{{$no++}}</td>  
-                                            <td>{{$jenis->nama}}</td>
-                                            <td>
-                                                ubah
-                                            </td>
-                                            
+                                            <td>{{ $no++ }}</td>
+                                            <td>{{ $p->kode }}</td>
+                                            <td>{{ $p->nama }}</td>
+                                            <td>{{ $p->jk }}</td>
+                                            <td>{{ $p->tmp_lahir }}</td>
+                                            <td>{{ $p->tgl_lahir }}</td>
+                                            <td>{{ $p->email }}</td>
+                                            <td>{{ $p->kartu->nama }}</td>
                                            
                                         </tr>
                                         

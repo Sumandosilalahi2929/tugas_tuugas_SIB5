@@ -24,6 +24,7 @@ class JenisProdukController extends Controller
     public function create()
     {
         //
+        return view('admin.jenis.create');
     }
 
     /**
@@ -32,6 +33,10 @@ class JenisProdukController extends Controller
     public function store(Request $request)
     {
         //
+        $jenis_produk = new Jenis_Produk;
+        $jenis_produk->nama = $request->nama;
+        $jenis_produk->save();
+        return redirect('admin/jenis_produk');
     }
 
     /**
@@ -48,6 +53,8 @@ class JenisProdukController extends Controller
     public function edit(string $id)
     {
         //
+        $jenis_produk = Jenis_Produk::all();
+        return view ('admin.jenis.index', compact('jenis_produk'));
     }
 
     /**
@@ -56,6 +63,10 @@ class JenisProdukController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $jenis_produk = Jenis_Produk::find($request->id);
+        $jenis_produk->nama = $request->nama;
+        $jenis_produk->save();
+        return redirect('admin/jenis_produk');
     }
 
     /**

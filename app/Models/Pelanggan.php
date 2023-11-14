@@ -12,9 +12,10 @@ class Pelanggan extends Model
     protected $fillable = [
         'kode','nama','jk','tmp_lahir','tgl_lahir','email','kartu_id'
     ];
+    public $timestamps =false;
 
     //relasi one to one ke table yang berhubungan dengan pelanggan
     public function kartu(){
-        return $this->hasOne(Kartu::class);
+        return $this->belongsTo(Kartu::class);
     }
 }
