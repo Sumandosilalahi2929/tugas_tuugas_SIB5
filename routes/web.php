@@ -76,10 +76,15 @@ Route::get('/produk/show/{id}', [ProdukController::class, 'show']);
 Route::get('/produk/edit/{id}', [ProdukController::class, 'edit']);
 Route::post('/produk/update/{id}', [ProdukController::class, 'update']);
 Route::get('/produk/delete/{id}', [ProdukController::class, 'destroy']);
+Route::get('/produk/generatePDF', [ProdukController::class, 'generatePDF']);
+Route::get('/produk/produkPDF', [ProdukController::class, 'produkPDF']);
+Route::get('/produk/pdfshow/{id}', [ProdukController::class, 'produkPDF_show']);
+Route::get('/produk/export/', [ProdukController::class, 'exportProduk']);
+Route::post('/produk/import/', [ProdukController::class, 'importProduk']);
 
 
 
-Route::get('/pelanggan',[PelangganController::class, 'index']);
-Route::get('pelanggan/create',[PelangganController::class, 'create']);
-Route::post('/pelanggan/store',[PelangganController::class, 'store']);
+
+Route::resource('pelanggan', PelangganController::class);
+
 });

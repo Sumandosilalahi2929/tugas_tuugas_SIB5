@@ -2,7 +2,7 @@
 @section('content')
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-@foreach ($produk as $pr)
+
 @if($errors->any())
 <div class="alert alert-danger">
   <ul>
@@ -17,21 +17,23 @@
   <div class="form-group row">
     <label for="text" class="col-4 col-form-label">Kode</label> 
     <div class="col-8">
-      <input id="text" name="kode" type="text" class="form-control @error('kode') is-invalid @enderror">
+      <input id="text" name="kode" type="text" class="form-control @error('kode') is-invalid @enderror" >
       @error('kode')
       <div class="invalid-feedback">
-        {{$message}}
+      {{$message}}
       </div>
       @enderror
     </div>
+   
   </div>
+       
   <div class="form-group row">
     <label for="text1" class="col-4 col-form-label">Nama</label> 
     <div class="col-8">
       <input id="text1" name="nama" type="text" class="form-control @error('nama') is-invalid @enderror">
       @error('nama')
       <div class="invalid-feedback">
-        {{$message}}
+      {{$message}}
       </div>
       @enderror
     </div>
@@ -43,7 +45,7 @@
       <input id="text2" name="harga_beli" type="text" class="form-control @error('harga_beli') is-invalid @enderror">
       @error('harga_beli')
       <div class="invalid-feedback">
-        {{$message}}
+      {{$message}}
       </div>
       @enderror
     </div>
@@ -54,7 +56,7 @@
       <input id="text3" name="harga_jual" type="text" class="form-control @error('harga_jual') is-invalid @enderror">
       @error('harga_jual')
       <div class="invalid-feedback">
-        {{$message}}
+      {{$message}}
       </div>
       @enderror
     </div>
@@ -65,7 +67,7 @@
       <input id="text4" name="stok" type="text" class="form-control @error('stok') is-invalid @enderror">
       @error('stok')
       <div class="invalid-feedback">
-        {{$message}}
+      {{$message}}
       </div>
       @enderror
     </div>
@@ -76,7 +78,7 @@
       <input id="text4" name="min_stok" type="text" class="form-control @error('min_stok') is-invalid @enderror">
       @error('min_stok')
       <div class="invalid-feedback">
-        {{$message}}
+      {{$message}}
       </div>
       @enderror
     </div>
@@ -87,7 +89,7 @@
       <input id="text4" name="foto" type="file" class="form-control @error('foto') is-invalid @enderror">
       @error('foto')
       <div class="invalid-feedback">
-        {{$message}}
+      {{$message}}
       </div>
       @enderror
     </div>
@@ -108,20 +110,15 @@
       </select>
       @error('jenis_produk_id')
       <div class="invalid-feedback">
-        {{$message}}
+      {{$message}}
       </div>
       @enderror
     </div>
   </div> 
   <div class="form-group row">
     <div class="offset-4 col-8">
-        <a href="{{ url('admin/produk') }}" class="btn btn-primary btn-sm">
-        <i class="fa fa-ban"></i>&nbsp; Batal
-        </a>
-        <button name="submit" type="submit" class="btn btn-primary btn-sm"><i class="fa fa-floppy-o"></i> Simpan</button>
-
+      <button name="submit" type="submit" class="btn btn-primary">Submit</button>
     </div>
-  </div>
   </div>
 </form>
 @endsection

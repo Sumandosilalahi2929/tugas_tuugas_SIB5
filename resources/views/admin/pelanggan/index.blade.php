@@ -9,8 +9,7 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <a href="{{ url('admin/pelanggan/create') }}" class="btn btn-primary btn-sm">
-                                <i class="fa fa-cart-plus"> Tambah</i></a>
+                        <a href="{{route('pelanggan.create')}}" class="btn btn-primary" ><i class="fas fa-plus"></i></a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -18,7 +17,7 @@
                                     <thead>
                                         
                                         <tr>
-                                            <th>No</th>
+                                        <th>No</th>
                                             <th>Kode</th>
                                             <th>Nama</th>
                                             <th>Jenis Kelamin</th>
@@ -26,12 +25,13 @@
                                             <th>Tanggal Lahir</th>
                                             <th>Email</th>
                                             <th>Kartu</th>
-                                    
+                                            <th>Action</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>No</th>
+                                        <th>No</th>
                                             <th>Kode</th>
                                             <th>Nama</th>
                                             <th>Jenis Kelamin</th>
@@ -39,21 +39,28 @@
                                             <th>Tanggal Lahir</th>
                                             <th>Email</th>
                                             <th>Kartu</th>
+                                            <th>Action</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                     @php $no=1 @endphp
-                                    @foreach ($pelanggan as $p)
+                                    @foreach ($pelanggan as $pl)
                                     
                                         <tr>
-                                            <td>{{ $no++ }}</td>
-                                            <td>{{ $p->kode }}</td>
-                                            <td>{{ $p->nama }}</td>
-                                            <td>{{ $p->jk }}</td>
-                                            <td>{{ $p->tmp_lahir }}</td>
-                                            <td>{{ $p->tgl_lahir }}</td>
-                                            <td>{{ $p->email }}</td>
-                                            <td>{{ $p->kartu->nama }}</td>
+                                            <td>{{$no++}}</td>
+                                            <td>{{$pl->kode}}</td>
+                                            <td>{{$pl->nama}}</td>
+                                            <td>{{$pl->jk}}</td>
+                                            <td>{{$pl->tmp_lahir}}</td>
+                                            <td>{{$pl->tgl_lahir}}</td>
+                                            <td>{{$pl->email}}</td>
+                                            <td>{{$pl->kartu->nama}}</td>
+                                            <td>
+                                            <a href="{{route('pelanggan.edit', $pl->id)}}" class="btn btn-warning btn-sm">Edit</a>
+                                            <a href="{{route('pelanggan.destroy', $pl->id) }}" class="btn btn-sm btn-danger" data-confirm-delete="true">Delete</a>
+
+
+                                            </td>
                                            
                                         </tr>
                                         

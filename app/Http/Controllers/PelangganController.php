@@ -1,9 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
 use App\Models\Pelanggan;
 use App\Models\Kartu;
-use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
+
+
+
 
 class PelangganController extends Controller
 {
@@ -12,9 +17,14 @@ class PelangganController extends Controller
      */
     public function index()
     {
-        //
+        //eloquent 
         $pelanggan = Pelanggan::all();
+        $title = 'Hapus User!';
+        $text = "Apakah kamu yakin akan menghapus user? ";
+        confirmDelete($title, $text);
+       
         return view('admin.pelanggan.index',['pelanggan' => $pelanggan]);
+
     }
 
     /**
@@ -25,7 +35,8 @@ class PelangganController extends Controller
         //
         $kartu = Kartu::all();
         $gender = ['L','P'];
-        return view ('admin.pelanggan.create',compact('kartu','gender'));
+        return view ('admin.pelanggan.create', compact('kartu', 'gender'));
+
     }
 
     /**
@@ -33,7 +44,7 @@ class PelangganController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //tambah data eloquent
         $pelanggan = new Pelanggan;
         $pelanggan->kode = $request->kode;
         $pelanggan->nama = $request->nama;
@@ -43,6 +54,7 @@ class PelangganController extends Controller
         $pelanggan->email = $request->email;
         $pelanggan->kartu_id = $request->kartu_id;
         $pelanggan->save();
+        Alert::success('Pelanggan', 'Berhasil menambahkan pelanggan');
         return redirect('admin/pelanggan');
     }
 
@@ -51,9 +63,9 @@ class PelangganController extends Controller
      */
     public function show(string $id)
     {
-        //
-        $pelanggan = Pelanggan::find($id);
-        return view ('admin.pelanggan.show', compact('pelanggan'));
+        //show eloquent
+        // $pelanggan = Pelanggan::find($id);
+        // return view ('admin.pelanggan.show', compact('pelanggan'));
     }
 
     /**
@@ -61,12 +73,11 @@ class PelangganController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        //edit eloquent
         $pelanggan = Pelanggan::find($id);
         $kartu = Kartu::all();
         $gender = ['L','P'];
-        return view ('admin.pelanggan.edit', compact('pelanggan','kartu','gender'));
-
+        return view ('admin.pelanggan.edit', compact('pelanggan', 'kartu','gender'));
     }
 
     /**
@@ -74,8 +85,18 @@ class PelangganController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
-        
+        // 
+        $pelanggan = Pelanggan::find($request->id);
+        $pelanggan->kode = $request->kode;
+        $pelanggan->nama = $request->nama;
+        $pelanggan->jk = $request->jk;
+        $pelanggan->tmp_lahir = $request->tmp_lahir;
+        $pelanggan->tgl_lahir = $request->tgl_lahir;
+        $pelanggan->email = $request->email;
+        $pelanggan->kartu_id = $request->kartu_id;
+        $pelanggan->save();
+        return redirect('admin/pelanggan')->with('success', 'Pelanggan berhasil diupdate!');
+
     }
 
     /**
@@ -83,9 +104,15 @@ class PelangganController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // delete eloquent
         $pelanggan = Pelanggan::find($id);
         $pelanggan->delete();
-        return redirect('admin/pelanggan');
+        // $pelanggan = Pelanggan::latest()->paginate(10);
+        // $title = 'Delete User!';
+        // $text = "Are you sure you want to delete?";
+        // confirmDelete($title, $text);
+        return redirect('admin/pelanggan')->with('success', 'Pelanggan berhasil dihapus!');
+        // return view('admin.pelanggan.index', compact('pelanggan'));
+
     }
 }

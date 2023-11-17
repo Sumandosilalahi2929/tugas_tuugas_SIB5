@@ -8,10 +8,24 @@
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <a href="{{ url('admin/produk/create') }}" class="btn btn-primary btn-sm">
-                                <i class="fa fa-cart-plus"> Tambah</i></a>
-                        </div>
+                      <div class="card-header py-3">
+                          <a href="{{ url('admin/produk/create') }}" class="btn btn-primary btn-sm"><i class="fa fa-cart-plus"> Tambah</i></a>
+                          <a href="{{ url('admin/produk/produkPDF') }}" class="btn btn-danger">PDF <i class="fas fa-file-pdf"></i></a>
+                          <a href="{{ url('admin/produk/export') }}" class="btn btn-success">Excel <i class="fas fa-file-excel"></i></a>
+                          <form action="{{ url('admin/produk/import') }}" method="POST" enctype="multipart/form-data">
+                              @csrf
+                              <div class="input-group mt-4">
+                                  <div class="custom-file">
+                                      <input type="file" class="custom-file-input" id="inputGroupFile04" name="file">
+                                      <label class="custom-file-label" for="inputGroupFile04">Pilih file Excel</label>
+                                  </div>
+                                  <div class="input-group-append">
+                                      <button type="submit" class="btn btn-primary">Impor Excel</button>
+                                  </div>
+                              </div>
+                          </form>
+                      </div>
+                  </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -59,6 +73,7 @@
                                             <td>
                                                 <a href="{{ url('admin/produk/show/'.$p->id) }}" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a>
                                                 <a href="{{ url('admin/produk/edit/'.$p->id) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+                                                <a href="{{ url('admin/produk/pdfshow/'.$p->id) }}" class="btn btn-sm btn-info"><i class="fas fa-file-pdf"></i></a>
                                                                                    
                                                 <!-- Button trigger modal -->
                                                 <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#exampleModal{{$p->id}}">

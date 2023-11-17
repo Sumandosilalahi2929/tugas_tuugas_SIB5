@@ -6,6 +6,7 @@
 @include('admin.layout.top')
 <div class="container-fluid">
 
+
 @yield('content')
 
 </div>

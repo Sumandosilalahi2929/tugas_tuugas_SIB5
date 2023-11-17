@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
+Use Alert;
+Use PDF;
+use App\Exports\ProdukExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ProdukImport;
 
 
 class ProdukController extends Controller
@@ -30,6 +35,7 @@ class ProdukController extends Controller
     {
         //
         $jenis_produk = DB::table('jenis_produk')->get();
+       
         return view ('admin.produk.create',compact('jenis_produk'));
     }
 
@@ -85,7 +91,7 @@ class ProdukController extends Controller
             'deskripsi'=>$request->deskripsi,
             'jenis_produk_id'=>$request->jenis_produk_id,
         ]);
-        return redirect('admin/produk');
+        return redirect('admin/produk')->withToastSuccess('Berhasil Menambahkan Produk!');
     }
 
     /**
@@ -159,7 +165,9 @@ class ProdukController extends Controller
         } else {
             $fileName = '';
         }
- 
+
+
+        
          // Update data produk
          DB::table('produk')->where('id', $request->id)->update([
              'kode' => $request->kode,
@@ -172,7 +180,12 @@ class ProdukController extends Controller
              'deskripsi' => $request->deskripsi,
              'jenis_produk_id' => $request->jenis_produk_id,
          ]);
-        return redirect('admin/produk');
+        //  Alert()->success('Sukses', 'Data berhasil diperbarui!');
+    
+        return redirect('admin/produk')->with('success', 'Data Berhasil diperbaruhi!');
+
+        
+        // return redirect('')->with('toast_success', 'Berhasil Mengupdate Data Produk!');
     }
 
     /**
@@ -182,6 +195,68 @@ class ProdukController extends Controller
     {
         //
         DB::table('produk')->where('id',$id)->delete();
-        return redirect('admin/produk');
+        return redirect('admin/produk')->with('success', 'Data Berhasil dihapus!');
     }
+    public function generatePDF()
+    {
+        $data = [
+            'title' => 'Selamat datang di ekspor PDF',
+            'date' => date('m/d/y'), // Perbaiki fungsi tanggal
+        ];
+        
+        $pdf = PDF::loadView('admin.produk.myPDF', $data);
+        
+        return $pdf->download('testdownload.pdf'); 
+    }
+    public function produkPDF()
+    {
+        $produk = Produk::join('jenis_produk', 'jenis_produk_id', '=', 'jenis_produk.id')
+        ->select('produk.*','jenis_produk.nama as jenis')
+        ->get();
+       $pdf = PDF::loadView('admin.produk.produkPDF',['produk' => $produk])->setPaper('a4', 'landscape');
+       return $pdf->stream();
+    }
+    public function produkPDF_show(string $id)
+    {
+        $produk = Produk::join('jenis_produk', 'jenis_produk_id', '=', 'jenis_produk.id')
+        ->select('produk.*','jenis_produk.nama as jenis')
+        ->where('produk.id',$id)
+        ->get();
+        $pdf = PDF::loadView('admin.produk.produkPDF_show',['produk' => $produk])->setPaper('a4', 'landscape');
+        return $pdf->stream();
+    }
+    public function exportProduk(){
+        return Excel::download(new ProdukExport, 'produk.xlsx');
+    }
+//     public function importProduk() 
+//     {
+//         // Excel::import(new ProdukImport, 'Produk.xlsx');
+        
+//         // return redirect('admin/produk')->with('success', 'All good!');
+
+//         $request->validate([
+//             'file' => 'required|mimes:xlsx,xls',
+//         ]);
+    
+//         $file = $request->file('file');
+    
+//         Excel::import(new ProdukImport, $file);
+    
+//         return redirect('admin/produk')->with('success', 'Data berhasil diimpor!');
+//     }
+
+public function importProduk(Request $request) 
+{
+    $request->validate([
+        'file' => 'required|mimes:xlsx,xls',
+    ]);
+
+    $file = $request->file('file');
+
+    Excel::import(new ProdukImport, $file);
+
+    return redirect('admin/produk')->with('success', 'Data berhasil diimpor!');
 }
+}
+
+
