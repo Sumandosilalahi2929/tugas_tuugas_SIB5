@@ -1,2 +1,2 @@
-# tugas_tuugas_SIB5
-ini adalah kumpulan tugas
+# Tugas & Latihan SIB 5 || PT hendevane Indonesia
+ini adalah beberapa Kumpulan Tugas dan latihan
