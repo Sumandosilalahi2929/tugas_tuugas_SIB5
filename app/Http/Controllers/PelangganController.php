@@ -74,7 +74,7 @@ class PelangganController extends Controller
     public function edit(string $id)
     {
         //edit eloquent
-        $pelanggan = Pelanggan::find($id);
+        $pelanggan = Pelanggan::all()->where('id',$id);
         $kartu = Kartu::all();
         $gender = ['L','P'];
         return view ('admin.pelanggan.edit', compact('pelanggan', 'kartu','gender'));
@@ -85,8 +85,20 @@ class PelangganController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // 
-        $pelanggan = Pelanggan::find($request->id);
+        // Validasi input
+        $request->validate([
+            'kode' => 'required',
+            'nama' => 'required',
+            'jk' => 'required',
+            'tmp_lahir' => 'required',
+            'tgl_lahir' => 'required|date',
+            'email' => 'required|email',
+            'kartu_id' => 'required|exists:kartu,id',
+        ]);
+        $pelanggan = Pelanggan::find($id);
+    
+    
+        // Perbarui nilai pelanggan
         $pelanggan->kode = $request->kode;
         $pelanggan->nama = $request->nama;
         $pelanggan->jk = $request->jk;
@@ -94,10 +106,14 @@ class PelangganController extends Controller
         $pelanggan->tgl_lahir = $request->tgl_lahir;
         $pelanggan->email = $request->email;
         $pelanggan->kartu_id = $request->kartu_id;
+    
+        // Simpan perubahan
         $pelanggan->save();
+    
+        // Redirect ke halaman pelanggan dengan pesan sukses
         return redirect('admin/pelanggan')->with('success', 'Pelanggan berhasil diupdate!');
-
     }
+    
 
     /**
      * Remove the specified resource from storage.

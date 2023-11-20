@@ -255,7 +255,7 @@ public function importProduk(Request $request)
 
     Excel::import(new ProdukImport, $file);
 
-    return redirect('admin/produk')->with('success', 'Data berhasil diimpor!');
+    return redirect('admin/produk')->with('success', 'Data produk berhasil diimpor!');
 }
 }
 
