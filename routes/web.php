@@ -53,6 +53,8 @@ Route::get('/daftarnilai', function(){
 
 Route::get('/datamahasiswa', [LihatNilaiController::class, 'dataMahasiswa']);
 
+// Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+Route::group(['middleware' => ['auth', 'peran:admin-manager-staff-pelanggan']], function(){
 //membuat grouping
 Route::prefix('admin')->group(function(){
 Route::get('/dashboard', [DashboardController::class, 'index']);
@@ -87,7 +89,20 @@ Route::post('/produk/import/', [ProdukController::class, 'importProduk']);
 
 Route::resource('pelanggan', PelangganController::class);
 
+
+
 });
+
+});
+
+//Route admin and dashboard
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+
+
+
+
+
