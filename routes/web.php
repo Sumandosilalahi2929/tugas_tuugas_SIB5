@@ -54,7 +54,7 @@ Route::get('/daftarnilai', function(){
 Route::get('/datamahasiswa', [LihatNilaiController::class, 'dataMahasiswa']);
 
 // Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
-Route::group(['middleware' => ['auth', 'peran:admin-manager-staff-pelanggan']], function(){
+Route::group(['middleware' => ['auth', 'peran:admin-manager-staff']], function(){
 //membuat grouping
 Route::prefix('admin')->group(function(){
 Route::get('/dashboard', [DashboardController::class, 'index']);
