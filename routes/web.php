@@ -1,8 +1,12 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\KartuController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\PagenotController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PelangganController;
@@ -21,9 +25,11 @@ use App\Http\Controllers\JenisProdukController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', [BerandaController::class, 'index']);
 
 Route::get('/salam', function(){
     return "Selamat Belajar Laravel";
@@ -88,7 +94,7 @@ Route::post('/produk/import/', [ProdukController::class, 'importProduk']);
 
 
 Route::resource('pelanggan', PelangganController::class);
-
+Route::get('/user', [UserController::class, 'index']);
 
 
 });
