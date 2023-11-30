@@ -95,8 +95,8 @@ Route::post('/produk/import/', [ProdukController::class, 'importProduk']);
 
 Route::resource('pelanggan', PelangganController::class);
 Route::get('/user', [UserController::class, 'index']);
-
-
+Route::get('/profile', [UserController::class, 'show']);
+Route::patch('/profile/{id}', [UserController::class, 'update']);
 });
 
 });
