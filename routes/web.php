@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KartuController;
 use App\Http\Controllers\ProdukController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\LihatNilaiController;
 use App\Http\Controllers\JenisProdukController;
+
 
 
 /*
@@ -41,6 +43,13 @@ Route::get('/staff/{nama}/{divisi}', function($nama, $divisi){
     return 'Nama Pegawai : '.$nama. '<br> Departemen : '.$divisi;
 });
 
+
+Route::get('/', [BerandaController::class, 'index']);
+Route::get('/shop', [ShopController::class, 'index']);
+Route::get('/cart', [ShopController::class, 'cart'])->name('cart');
+Route::get('add-to-cart/{id}', [ShopController::class, 'addToCart'])->name('add.to.cart');
+Route::patch('update-cart', [ShopController::class, 'update'])->name('update.cart');
+Route::delete('remove-from-cart', [ShopController::class, 'remove'])->name('remove.from.cart');
 
 //menambahkan routing dengan memanggnil nama file dari view
 Route::get('/kondisi',function(){

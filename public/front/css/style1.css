@@ -1,0 +1,157 @@
+/* Gaya umum */
+.thumbnail {
+    position: relative;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.thumbnail img {
+    width: 100%; /* Ubah lebar gambar menjadi 100% */
+    height: auto; /* Biarkan tinggi gambar menyesuaikan proporsi */
+}
+
+.thumbnail .caption {
+    margin: 7px;
+}
+
+.main-section {
+    background-color: #F8F8F8;
+}
+
+.dropdown {
+    float: right;
+    padding-right: 30px;
+}
+
+.btn {
+    border: 0;
+    margin: 10px 0;
+    box-shadow: none !important;
+}
+
+/* Gaya untuk dropdown */
+.dropdown .dropdown-menu {
+    padding: 20px;
+    top: 30px !important;
+    width: 350px !important;
+    left: -110px !important;
+    box-shadow: 0 5px 30px black;
+}
+
+.total-header-section {
+    border-bottom: 1px solid #d2d2d2;
+}
+
+.total-section p {
+    margin-bottom: 20px;
+}
+
+.cart-detail {
+    padding: 15px 0;
+}
+
+.cart-detail-img img {
+    width: 100%;
+    height: auto; /* Biarkan tinggi gambar menyesuaikan proporsi */
+    padding-left: 15px;
+}
+
+.cart-detail-product p {
+    margin: 0;
+    color: #000;
+    font-weight: 500;
+}
+
+.cart-detail .price {
+    font-size: 12px;
+    margin-right: 10px;
+    font-weight: 500;
+}
+
+.cart-detail .count {
+    color: #C2C2DC;
+}
+
+.checkout {
+    border-top: 1px solid #d2d2d2;
+    padding-top: 15px;
+}
+
+.checkout .btn-primary {
+    border-radius: 50px;
+    height: 50px;
+}
+
+.dropdown-menu:before {
+    content: " ";
+    position: absolute;
+    top: -20px;
+    right: 50px;
+    border: 10px solid transparent;
+    border-bottom-color: #fff;
+}
+
+.badge-danger {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.badge-pill.badge-danger {
+    font-size: 13px; 
+    font-weight: bold;
+}
+
+.product-section {
+    padding: 40px 0;
+}
+
+.login-message {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.login-message p {
+    font-size: 18px;
+    color: #555;
+    margin: 0;
+}
+
+.login-message a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-message a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* Di dalam file style.css atau style1.css */
+#cart {
+    margin-top: 20px;
+}
+
+#cart th, #cart td {
+    text-align: center;
+}
+
+#cart img {
+    max-width: 80px;
+    max-height: 80px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+#cart .quantity {
+    width: 60px;
+    text-align: center;
+}
+
+#cart .remove-from-cart {
+    font-size: 18px;
+}
