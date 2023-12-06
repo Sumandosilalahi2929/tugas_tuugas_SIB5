@@ -37,6 +37,10 @@ Route::get('/salam', function(){
     return "Selamat Belajar Laravel";
 });
 
+//route sementara api
+
+Route::get('/produkapi', [ProdukController::class, 'apiProduk']);
+Route::get('/produkapi/{id}', [ProdukController::class, 'apiProdukDetail']);
 
 //tambah routing
 Route::get('/staff/{nama}/{divisi}', function($nama, $divisi){
@@ -98,6 +102,8 @@ Route::get('/produk/produkPDF', [ProdukController::class, 'produkPDF']);
 Route::get('/produk/pdfshow/{id}', [ProdukController::class, 'produkPDF_show']);
 Route::get('/produk/export/', [ProdukController::class, 'exportProduk']);
 Route::post('/produk/import/', [ProdukController::class, 'importProduk']);
+
+
 
 
 
