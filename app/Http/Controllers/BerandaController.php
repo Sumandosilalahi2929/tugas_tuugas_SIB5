@@ -7,12 +7,10 @@ use App\Models\Produk;
 
 class BerandaController extends Controller
 {
-    public function index()
-    {
-        // Mengambil data produk dengan jenis_produk_id sebesar 
-        $produk = Produk::where('jenis_produk_id', 4)->get();
+    public function index(){
 
-        // Mengirim data produk ke tampilan beranda.blade.php
-        return view('beranda', ['produk' => $produk]);
+        $produk = Produk::where('jenis_produk_id', 2)->get();
+
+        return view('beranda', compact('produk'));
     }
 }
